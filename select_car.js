@@ -2,7 +2,7 @@ const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('test2.db');
 
 let sql = `
-select car.id, car.name, maker.name as name2 from car inner join maker on car.maker_id=maker.id;
+select id, name, maker_id from car;
 `
 
 db.serialize( () => {
@@ -12,7 +12,7 @@ db.serialize( () => {
 			return;
 		}
 		for( let data of row ) {
-			console.log( data.id + ' : ' + data.name + ' : ' + data.name2);
+			console.log( data.id + ' : ' + data.name + ' : ' + data.maker_id);
 		}
 	});
 });
